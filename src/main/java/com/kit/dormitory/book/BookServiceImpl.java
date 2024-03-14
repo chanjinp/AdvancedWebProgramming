@@ -7,13 +7,19 @@ import com.kit.dormitory.member.Member;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BookServiceImpl implements BookService{
+public class BookServiceImpl implements BookService {
     //private final FeePolicy feePolicy = new OldFeePolicy();
-    private final FeePolicy feePolicy = new NewFeePolicy();
+    //private final FeePolicy feePolicy = new NewFeePolicy();
+
+    private final FeePolicy feePolicy;
+
+    public BookServiceImpl(FeePolicy feePolicy) {
+        this.feePolicy = feePolicy;
+    }
 
     @Override
     public Book assignRoom(Member member, DormName dormName, String roomNumber) {
-        int fee = feePolicy.fee(member,dormName);
-        return new Book(member,dormName,fee);
+        int fee = feePolicy.fee(member, dormName);
+        return new Book(member, dormName, fee);
     }
 }
