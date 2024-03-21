@@ -10,7 +10,7 @@ import com.kit.dormitory.member.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+@Configuration //Configuration에도 Component 어노테이션이 존재 -> 스캔의 대상에 포함됨 -> Bean 중복되면 위험 = 에러
 public class AppConfig {
     @Bean
     MemberService memberService() {
